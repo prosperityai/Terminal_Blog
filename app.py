@@ -1,18 +1,8 @@
 from database import Database
-from models.blog import Blog
+from menu import menu
 
-Database.initialize()
+Database.intialize()
 
+menu = Menu()
 
-post = Post(blog_id ="123":,
-            title = 'Another terminal blog',
-            content = "Some contents",
-            author = "Prosperity King"
-  )
-blog.new_post()
-
-post.save_to_mongo()
-
-from_database = Blog.from_mongo()
-
-print(blog.getposts())
+menu.run_menu()
