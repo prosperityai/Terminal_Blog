@@ -12,8 +12,8 @@ class Post(object):
     self.idt = uuid.uuid4().hexa if id is None else id
 
 
-  def mongo_save(self):
-    Database.insert(collections = 'posts',data = self.json)
+  def save_to_mongo(self):
+    Database.insert(collections = 'posts',data = self.json())
 
 
   def json(self):
@@ -27,9 +27,14 @@ class Post(object):
     }
 
 
-  @staticmethod
- def from_mongo(id):
-   return Database.find_one(collections='posts',query ={'id':id})
+  @classmethod
+ def from_mongo(cls,id):
+   post_data = Database.find_one(collections='posts',query ={'id':id})
+   return cls(blog_id = post_data['blog_id'],
+              title = post_data['title'],
+              content= post_data['author'],
+              author = post_data['created_date'],
+              id = post_data['id'])
 
    @staticmethod
  def from_mongo(id):
