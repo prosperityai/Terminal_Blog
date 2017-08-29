@@ -5,6 +5,5 @@ client = pymongo.MongoClient(url)
 database = client['prosperity']
 collection = database['students']
 
-students = collection.find({})
-for student in students:
-  print(student)
+students = [student for student in collection.find({})]
+print(students)
